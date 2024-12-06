@@ -5,13 +5,14 @@ from typing import List, Tuple
 import os
 
 # Paths
-MODEL_PATH = 'model/plant_disease_model.h5'
-CLASSES_PATH = 'model/classes.txt'
+MODEL_PATH = '/tmp/plant_disease_model.h5'
+CLASSES_PATH = '/tmp/classes.txt'
 BUCKET_NAME = 'plantanist-model'
 MODEL_BLOB_NAME = 'plant_disease_model.h5'
 CLASSES_BLOB_NAME = 'classes.txt'
 
 def download_file_from_gcs(bucket_name: str, source_blob_name: str, destination_file_name: str):
+    print(f"Downloading {source_blob_name} from bucket {bucket_name} to {destination_file_name}")
     storage_client = storage.Client()
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(source_blob_name)
